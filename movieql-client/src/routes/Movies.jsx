@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 const GET_MOvIES = gql`
   query allMovies {
@@ -28,12 +29,16 @@ export default function Movies() {
       <ul>
         <h1>Movies</h1>
         {data.allMovies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <li key={movie.id}>
+            <Link to={`${movie.id}`}>{movie.title}</Link>
+          </li>
         ))}
         <h1>Tweets</h1>
         {data.allTweets.map((tweet) => (
           <li key={tweet.id}>
-            {tweet.text} by: {tweet.author.fullName}
+            <Link to={`${tweet.id}`}>
+              {tweet.text} by: {tweet.author.fullName}
+            </Link>
           </li>
         ))}
       </ul>
